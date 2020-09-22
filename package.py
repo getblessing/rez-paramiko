@@ -5,17 +5,20 @@ description = "SSH2 protocol library"
 
 version = "2.7.1"
 
-requires = [
-    "cryptography-2.5+",
-    "bcrypt-3.1.3+",
-    "pynacl-1.0.1+",
+requires = []
+
+variants = [
+    ["python-2.7"],
+    ["python-3.6"],
+    ["python-3.7"],
 ]
 
-variants = []
+pip_packages = [
+    "paramiko==2.7.1",
+]
 
-
-private_build_requires = ["rezutil-1", "pipz"]
-build_command = "python -m rezutil build {root} --use-pipz"
+private_build_requires = ["pipz"]
+build_command = "install %s --bundle" % " ".join(pip_packages)
 
 
 def commands():
